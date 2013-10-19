@@ -13,6 +13,7 @@ from zkplatform import *
 from zkworkcode import *
 from zkssr import *
 from zkpin import *
+from zkface import *
 
 class ZKLib:
     
@@ -46,6 +47,7 @@ class ZKLib:
             print zkspace2(self), "Space 2"
             print zkssr(self), "SSR"
             print zkpinwidth(self), "PIN Width"
+            print zkfaceon(self), "Face Function On"
             return ret
         except:
             if self.trynumber<=5:
