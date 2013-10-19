@@ -1,2 +1,2 @@
 # Python ZKLib #
-Pustaka untuk mesin absensi untuk bahasa python dengan koneksi jaringan menggunakan Protocol UDP dan Port 4370
+Libraries for python attendance machine with a connection to the network using the UDP protocol and port 4370
