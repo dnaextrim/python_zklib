@@ -12,6 +12,7 @@ from zkextendoplog import *
 from zkplatform import *
 from zkworkcode import *
 from zkssr import *
+from zkpin import *
 
 class ZKLib:
     
@@ -44,6 +45,7 @@ class ZKLib:
             print zkworkcode(self), "Workcode"
             print zkspace2(self), "Space 2"
             print zkssr(self), "SSR"
+            print zkpinwidth(self), "PIN Width"
             return ret
         except:
             if self.trynumber<=5:
