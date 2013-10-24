@@ -28,7 +28,7 @@ if ret == True:
     
     data_user = zk.getUser()
     print "Pesan Get User:"
-    for uid in data_user
+    for uid in data_user:
         print "ID %s: %s" % ( uid, data_user[uid] )
         
     print "Pesan Disconnect:", zk.disconnect()

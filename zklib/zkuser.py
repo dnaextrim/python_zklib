@@ -56,14 +56,14 @@ def zkgetuser(self):
             name, uid, prop = unpack( '28sx12s31s', userdata.ljust(72)[:72] )
             
             # Clean up some messy characters from the user name
-            #name = unicode(name.strip('\x00|\x01\x10x'), errors='ignore')
+            uid = unicode(uid.strip('\x00|\x01\x10x'), errors='ignore')
             name = name.split('\x00', 1)[0]
             
             if name.strip() == "":
                 name = uid
             users[uid] = name
             
-            print("%s, %s" % (uid, name))
+            #print("%s, %s" % (uid, name))
             userdata = userdata[72:]
             
     return users
