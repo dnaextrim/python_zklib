@@ -3,10 +3,10 @@ from datetime import datetime, date
 
 from zkconts import *
 
-def zkversion(self):
+def zkserialnumber(self):
     """Start a connection with the time clock"""
-    command = CMD_VERSION
-    command_string = ''
+    command = CMD_DEVICE
+    command_string = '~SerialNumber'
     chksum = 0
     session_id = self.session_id
     reply_id = unpack('HHHH', self.data_recv[:8])[3]
