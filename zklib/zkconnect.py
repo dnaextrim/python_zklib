@@ -15,7 +15,7 @@ def zkconnect(self):
         reply_id, command_string)
     
     self.zkclient.sendto(buf, self.address)
-    print buf.encode("hex")
+    #print buf.encode("hex")
     try:
         self.data_recv, addr = self.zkclient.recvfrom(1024)
         self.session_id = unpack('HHHH', self.data_recv[:8])[2]
@@ -36,7 +36,7 @@ def zkdisconnect(self):
         reply_id, command_string)
 
     self.zkclient.sendto(buf, self.address)
-    print buf.encode("hex")
+    #print buf.encode("hex")
     self.data_recv, addr = self.zkclient.recvfrom(1024)
     return self.checkValid( self.data_recv )
     

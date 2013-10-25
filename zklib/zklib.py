@@ -132,6 +132,9 @@ class ZKLib:
     def getAttendance(self):
         return zkgetattendance(self)
     
+    def clearAttendance(self):
+        return zkclearattendance(self)
+        
     def setTime(self, t):
         return zksettime(self, t)
     
