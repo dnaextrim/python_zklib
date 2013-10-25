@@ -21,7 +21,8 @@ from zkserialnumber import *
 from zkdevice import *
 from zkuser import *
 from zkattendance import *
-    
+from zktime import *
+
 class ZKLib:
     
     def __init__(self, ip, port):
@@ -130,3 +131,9 @@ class ZKLib:
     
     def getAttendance(self):
         return zkgetattendance(self)
+    
+    def setTime(self, t):
+        return zksettime(self, t)
+    
+    def getTime(self):
+        return zkgettime(self)

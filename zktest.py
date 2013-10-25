@@ -45,4 +45,6 @@ if ret == True:
             
         print "Tanggal %s, Jam %s: %s, Status: %s" % ( l[2].date(), l[2].time(), l[0], state )
     
+    print "Pesan Get Time:", zk.getTime()
+    
     print "Pesan Disconnect:", zk.disconnect()
