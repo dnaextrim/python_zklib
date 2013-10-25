@@ -129,6 +129,12 @@ class ZKLib:
     def getUser(self):
         return zkgetuser(self)
     
+    def clearUser(self):
+        return zkclearuser(self)
+    
+    def clearAdmin(self):
+        return zkclearadmin(self)
+        
     def getAttendance(self):
         return zkgetattendance(self)
     

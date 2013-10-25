@@ -33,6 +33,8 @@ if ret == True:
     for uid in data_user:
         print "ID %s: %s" % ( uid, data_user[uid] )
     
+    print "Pesan Clear Admin:", zk.clearAdmin()
+    
     attendance = zk.getAttendance()
     print "Pesan Get Attendance:"
     for l in attendance:
