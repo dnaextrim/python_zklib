@@ -11,13 +11,13 @@ ret = zk.connect()
 print "Pesan Koneksi:", ret
 
 if ret == True:
-    #print "Pesan Versi:", zk.version()
-    #print "Pesan Versi OS:", zk.osversion()
+    print "Pesan Versi:", zk.version()
+    print "Pesan Versi OS:", zk.osversion()
     """
     print "Pesan Extend Format:", zk.extendFormat()
     print "Pesan Extend OP Log:", zk.extendOPLog()
     """
-    """
+    
     print "Pesan Platform:", zk.platform()
     print "Pesan Platform Version:", zk.fmVersion()
     print "Pesan Work Code:", zk.workCode()
@@ -33,9 +33,6 @@ if ret == True:
     for uid in data_user:
         print "ID %s: %s" % ( uid, data_user[uid] )
     
-    """
-    
-    print decode_time(443976454)
     attendance = zk.getAttendance()
     print "Pesan Get Attendance:"
     for l in attendance:
