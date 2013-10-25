@@ -20,42 +20,7 @@ from zkface import *
 from zkserialnumber import *
 from zkdevice import *
 from zkuser import *
-
-def encode_time(t):
-    """Encode a timestamp send at the timeclock
-
-    copied from zkemsdk.c - EncodeTime"""
-    d = ( (t.year % 100) * 12 * 31 + ((t.month - 1) * 31) + t.day - 1) *\
-         (24 * 60 * 60) + (t.hour * 60 + t.minute) * 60 + t.second
-
-    return d
-
-
-def decode_time(t):
-    """Decode a timestamp retrieved from the timeclock
-
-    copied from zkemsdk.c - DecodeTime"""
-    second = t % 60
-    t = t / 60
-
-    minute = t % 60
-    t = t / 60
-
-    hour = t % 24
-    t = t / 24
-
-    day = t % 31+1
-    t = t / 31
-
-    month = t % 12+1
-    t = t / 12
-
-    year = t + 2000
-
-    d = datetime(year, month, day, hour, minute, second)
-
-    return d
-    
+from zkattendance import *
     
 class ZKLib:
     
@@ -65,6 +30,7 @@ class ZKLib:
         self.zkclient.settimeout(3)
         self.session_id = 0
         self.userdata = []
+        self.attendancedata = []
     
     
     def createChkSum(self, p):
@@ -161,3 +127,6 @@ class ZKLib:
     
     def getUser(self):
         return zkgetuser(self)
+    
+    def getAttendance(self):
+        return zkgetattendance(self)

@@ -2,6 +2,8 @@ import sys
 sys.path.append("zklib")
 
 import zklib
+import time
+from zkconts import *
 
 zk = zklib.ZKLib("192.168.1.201", 4370)
 
@@ -9,13 +11,13 @@ ret = zk.connect()
 print "Pesan Koneksi:", ret
 
 if ret == True:
-    print "Pesan Versi:", zk.version()
-    print "Pesan Versi OS:", zk.osversion()
+    #print "Pesan Versi:", zk.version()
+    #print "Pesan Versi OS:", zk.osversion()
     """
     print "Pesan Extend Format:", zk.extendFormat()
     print "Pesan Extend OP Log:", zk.extendOPLog()
     """
-    
+    """
     print "Pesan Platform:", zk.platform()
     print "Pesan Platform Version:", zk.fmVersion()
     print "Pesan Work Code:", zk.workCode()
@@ -30,5 +32,20 @@ if ret == True:
     print "Pesan Get User:"
     for uid in data_user:
         print "ID %s: %s" % ( uid, data_user[uid] )
-        
+    
+    """
+    
+    print decode_time(443976454)
+    attendance = zk.getAttendance()
+    print "Pesan Get Attendance:"
+    for l in attendance:
+        if l[1] == 15:
+            state = 'Check In'
+        elif l[1] == 0:
+            state = 'Check Out'
+        else:
+            state = 'Undefined'
+            
+        print "Tanggal %s, Jam %s: %s, Status: %s" % ( l[2].date(), l[2].time(), l[0], state )
+    
     print "Pesan Disconnect:", zk.disconnect()
