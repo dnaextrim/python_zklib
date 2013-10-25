@@ -15,6 +15,26 @@ def getSizeUser(self):
     else:
         return False
 
+
+def zksetuser(self):
+    """Start a connection with the time clock"""
+    command = CMD_SET_USER
+    command_string = ''
+    chksum = 0
+    session_id = self.session_id
+    reply_id = unpack('HHHH', self.data_recv[:8])[3]
+
+    buf = self.createHeader(command, chksum, session_id,
+        reply_id, command_string)
+    self.zkclient.sendto(buf, self.address)
+    #print buf.encode("hex")
+    try:
+        self.data_recv, addr = self.zkclient.recvfrom(1024)
+        self.session_id = unpack('HHHH', self.data_recv[:8])[2]
+        return self.data_recv[8:]
+    except:
+        return False
+
 def zkgetuser(self):
     """Start a connection with the time clock"""
     command = CMD_USERTEMP_RRQ
@@ -49,21 +69,24 @@ def zkgetuser(self):
             
             userdata = ''.join( self.userdata )
             
-            userdata = userdata[23:]
+            userdata = userdata[14:]
             
             while (len(userdata) / 28) > 0:
                 
-                name, uid, prop = unpack( '28sx12s31s', userdata.ljust(72)[:72] )
+                role, password, name, uid, prop = unpack( '1s8s28sx16s18s', userdata.ljust(72)[:72] )
                 
                 # Clean up some messy characters from the user name
+                password = password.split('\x00', 1)[0]
+                password = unicode(password.strip('\x00|\x01\x10x'), errors='ignore')
+                
                 uid = unicode(uid.strip('\x00|\x01\x10x'), errors='ignore')
                 name = name.split('\x00', 1)[0]
                 
                 if name.strip() == "":
                     name = uid
-                users[uid] = name
+                users[uid] = (name, int( role.encode("hex"), 16 ), password)
                 
-                #print("%s, %s" % (uid, name))
+                #print("%s, %s, %s, %s" % (uid, name, role, password))
                 userdata = userdata[72:]
                 
         return users

@@ -29,6 +29,8 @@ CMD_VERSION = 1100
 CMD_DEVICE = 11
 
 CMD_CLEAR_ADMIN = 20
+CMD_SET_USER = 8
+
 
 def encode_time(t):
     """Encode a timestamp send at the timeclock

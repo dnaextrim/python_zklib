@@ -31,21 +31,25 @@ if ret == True:
     data_user = zk.getUser()
     print "Pesan Get User:"
     for uid in data_user:
-        print "ID %s: %s" % ( uid, data_user[uid] )
+        if data_user[uid][1] == 14:
+            level = 'Admin'
+        else:
+            level = 'User'
+        print "ID %s: %s, Level: %s, Password: %s" % ( uid, data_user[uid][0], level, data_user[uid][2]  )
     
     print "Pesan Clear Admin:", zk.clearAdmin()
     
     attendance = zk.getAttendance()
     print "Pesan Get Attendance:"
-    for l in attendance:
-        if l[1] == 15:
+    for lattendance in attendance:
+        if lattendance[1] == 15:
             state = 'Check In'
-        elif l[1] == 0:
+        elif lattendance[1] == 0:
             state = 'Check Out'
         else:
             state = 'Undefined'
             
-        print "Tanggal %s, Jam %s: %s, Status: %s" % ( l[2].date(), l[2].time(), l[0], state )
+        print "Tanggal %s, Jam %s: %s, Status: %s" % ( lattendance[2].date(), lattendance[2].time(), lattendance[0], state )
     
     print "Pesan Get Time:", zk.getTime()
     
