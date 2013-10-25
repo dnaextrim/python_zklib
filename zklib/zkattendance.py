@@ -61,7 +61,7 @@ def zkgetattendance(self):
             attendancedata = attendancedata[14:]
             
             
-            while (len(attendancedata) / 40) > 0:
+            while len(attendancedata) > 0:
                 
                 uid, state, timestamp, space = unpack( '24s1s4s11s', attendancedata.ljust(40)[:40] )
                 

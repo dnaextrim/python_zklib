@@ -71,7 +71,7 @@ def zkgetuser(self):
             
             userdata = userdata[14:]
             
-            while (len(userdata) / 28) > 0:
+            while len(userdata) > 0:
                 
                 role, password, name, uid, prop = unpack( '1s8s28sx16s18s', userdata.ljust(72)[:72] )
                 
