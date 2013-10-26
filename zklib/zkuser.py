@@ -49,7 +49,7 @@ def zkgetuser(self):
     #print buf.encode("hex")
     try:
         self.data_recv, addr = self.zkclient.recvfrom(1024)
-        self.session_id = unpack('HHHH', self.data_recv[:8])[2]
+        
         
         if getSizeUser(self):
             bytes = getSizeUser(self)
@@ -57,8 +57,9 @@ def zkgetuser(self):
                 data_recv, addr = self.zkclient.recvfrom(1032)
                 self.userdata.append(data_recv)
                 bytes -= 1024
-                
-        data_recv = self.zkclient.recvfrom(8)
+            
+            self.session_id = unpack('HHHH', self.data_recv[:8])[2]
+            data_recv = self.zkclient.recvfrom(8)
         
         users = {}
         if len(self.userdata) > 0:

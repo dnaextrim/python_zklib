@@ -37,7 +37,6 @@ def zkgetattendance(self):
     #print buf.encode("hex")
     try:
         self.data_recv, addr = self.zkclient.recvfrom(1024)
-        self.session_id = unpack('HHHH', self.data_recv[:8])[2]
         
         if getSizeAttendance(self):
             bytes = getSizeAttendance(self)
@@ -46,11 +45,11 @@ def zkgetattendance(self):
                 self.attendancedata.append(data_recv)
                 bytes -= 1024
                 
-        data_recv = self.zkclient.recvfrom(8)
+            self.session_id = unpack('HHHH', self.data_recv[:8])[2]
+            data_recv = self.zkclient.recvfrom(8)
         
-        attendance = []
-        
-        if len(self.attendancedata) > 0:
+        attendance = []  
+        if len(self.attendancedata) > 8:
             # The first 4 bytes don't seem to be related to the user
             for x in xrange(len(self.attendancedata)):
                 if x > 0:

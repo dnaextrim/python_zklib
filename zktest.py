@@ -3,7 +3,6 @@ sys.path.append("zklib")
 
 import zklib
 import time
-from zkconts import *
 
 zk = zklib.ZKLib("192.168.1.201", 4370)
 
@@ -38,7 +37,8 @@ if ret == True:
                 level = 'User'
             print "ID %s: %s, Level: %s, Password: %s" % ( uid, data_user[uid][0], level, data_user[uid][2]  )
         
-    print "Pesan Clear Admin:", zk.clearAdmin()
+    #print "Pesan Clear Admin:", zk.clearAdmin()
+    
     
     attendance = zk.getAttendance()
     print "Pesan Get Attendance:"
