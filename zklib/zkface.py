@@ -1,7 +1,7 @@
 from struct import pack, unpack
 from datetime import datetime, date
 
-from zkconts import *
+from zkconst import *
 
 def zkfaceon(self):
     """Start a connection with the time clock"""

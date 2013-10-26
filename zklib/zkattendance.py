@@ -1,7 +1,7 @@
 from struct import pack, unpack
 from datetime import datetime, date
 
-from zkconts import *
+from zkconst import *
 
 def getSizeAttendance(self):
     """Checks a returned packet to see if it returned CMD_PREPARE_DATA,
