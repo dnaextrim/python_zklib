@@ -125,7 +125,13 @@ class ZKLib:
     
     def deviceName(self):
         return zkdevicename(self)
+        
+    def disableDevice(self):
+        return zkdisabledevice(self)
     
+    def enableDevice(self):
+        return zkenabledevice(self)
+        
     def getUser(self):
         return zkgetuser(self)
     

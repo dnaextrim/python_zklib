@@ -10,6 +10,8 @@ ret = zk.connect()
 print "Pesan Koneksi:", ret
 
 if ret == True:
+    print "Pesan Disable Device", zk.disableDevice()
+    
     print "Pesan Versi:", zk.version()
     print "Pesan Versi OS:", zk.osversion()
     """
@@ -57,5 +59,7 @@ if ret == True:
         print "Pesan Clear Attendance:", zk.clearAttendance()
     
     print "Pesan Get Time:", zk.getTime()
+    
+    print "Pesan Enable Device", zk.enableDevice()
     
     print "Pesan Disconnect:", zk.disconnect()
