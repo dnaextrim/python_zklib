@@ -134,7 +134,10 @@ class ZKLib:
         
     def getUser(self):
         return zkgetuser(self)
-    
+        
+    def setUser(self, uid, userid, name, password, role):
+        return zksetuser(self, uid, userid, name, password, role)
+        
     def clearUser(self):
         return zkclearuser(self)
     

@@ -3,6 +3,7 @@ sys.path.append("zklib")
 
 import zklib
 import time
+import zkconst
 
 zk = zklib.ZKLib("192.168.1.201", 4370)
 
@@ -33,14 +34,15 @@ if ret == True:
     print "Pesan Get User:"
     if data_user:
         for uid in data_user:
-            if data_user[uid][1] == 14:
+            
+            if data_user[uid][2] == 14:
                 level = 'Admin'
             else:
                 level = 'User'
-            print "ID %s: %s, Level: %s, Password: %s" % ( uid, data_user[uid][0], level, data_user[uid][2]  )
+            print "[UID %d]: ID: %s, Name: %s, Level: %s, Password: %s" % ( uid, data_user[uid][0], data_user[uid][1], level, data_user[uid][3]  )
         
-    #print "Pesan Clear Admin:", zk.clearAdmin()
-    
+    print "Pesan Clear Admin:", zk.clearAdmin()
+    zk.setUser(uid=61, userid='41', name='Dony Wahyu Isp', password='123456', role=zkconst.LEVEL_ADMIN)
     
     attendance = zk.getAttendance()
     print "Pesan Get Attendance:"
@@ -56,7 +58,7 @@ if ret == True:
                 
             print "Tanggal %s, Jam %s: %s, Status: %s" % ( lattendance[2].date(), lattendance[2].time(), lattendance[0], state )
         
-        print "Pesan Clear Attendance:", zk.clearAttendance()
+        #print "Pesan Clear Attendance:", zk.clearAttendance()
     
     print "Pesan Get Time:", zk.getTime()
     

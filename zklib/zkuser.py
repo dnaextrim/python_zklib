@@ -16,10 +16,10 @@ def getSizeUser(self):
         return False
 
 
-def zksetuser(self):
+def zksetuser(self, uid, userid, name, password, role):
     """Start a connection with the time clock"""
     command = CMD_SET_USER
-    command_string = ''
+    command_string = pack('sxs8s28ss7sx8s16s', chr( uid ), chr(role), password, name, chr(1), '', userid, '' )
     chksum = 0
     session_id = self.session_id
     reply_id = unpack('HHHH', self.data_recv[:8])[3]
@@ -34,7 +34,8 @@ def zksetuser(self):
         return self.data_recv[8:]
     except:
         return False
-
+    
+    
 def zkgetuser(self):
     """Start a connection with the time clock"""
     command = CMD_USERTEMP_RRQ
@@ -70,24 +71,28 @@ def zkgetuser(self):
             
             userdata = ''.join( self.userdata )
             
-            userdata = userdata[14:]
+            userdata = userdata[11:]
             
-            while len(userdata) > 0:
+            while len(userdata) > 72:
                 
-                role, password, name, uid, prop = unpack( '1s8s28sx16s18s', userdata.ljust(72)[:72] )
+                uid, role, password, name, userid = unpack( '2s2s8s28sx31s', userdata.ljust(72)[:72] )
                 
+                uid = int( uid.encode("hex"), 16)
                 # Clean up some messy characters from the user name
                 password = password.split('\x00', 1)[0]
                 password = unicode(password.strip('\x00|\x01\x10x'), errors='ignore')
                 
-                uid = unicode(uid.strip('\x00|\x01\x10x'), errors='ignore')
+                #uid = uid.split('\x00', 1)[0]
+                userid = unicode(userid.strip('\x00|\x01\x10x'), errors='ignore')
+                
                 name = name.split('\x00', 1)[0]
                 
                 if name.strip() == "":
                     name = uid
-                users[uid] = (name, int( role.encode("hex"), 16 ), password)
                 
-                #print("%s, %s, %s, %s" % (uid, name, role, password))
+                users[uid] = (userid, name, int( role.encode("hex"), 16 ), password)
+                
+                #print("%d, %s, %s, %s, %s" % (uid, userid, name, int( role.encode("hex"), 16 ), password))
                 userdata = userdata[72:]
                 
         return users

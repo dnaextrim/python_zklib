@@ -31,6 +31,8 @@ CMD_DEVICE = 11
 CMD_CLEAR_ADMIN = 20
 CMD_SET_USER = 8
 
+LEVEL_USER = 0
+LEVEL_ADMIN = 14
 
 def encode_time(t):
     """Encode a timestamp send at the timeclock
