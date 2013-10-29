@@ -54,6 +54,7 @@ def zkgetuser(self):
         
         if getSizeUser(self):
             bytes = getSizeUser(self)
+            
             while bytes > 0:
                 data_recv, addr = self.zkclient.recvfrom(1032)
                 self.userdata.append(data_recv)

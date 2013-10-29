@@ -43,17 +43,24 @@ class ZKLib:
         chksum = 0
         while l > 1:
             chksum += unpack('H', pack('BB', p[0], p[1]))[0]
+            
             p = p[2:]
             if chksum > USHRT_MAX:
                 chksum -= USHRT_MAX
             l -= 2
+        
+        
         if l:
             chksum = chksum + p[-1]
+            
         while chksum > USHRT_MAX:
             chksum -= USHRT_MAX
+        
         chksum = ~chksum
+        
         while chksum < 0:
             chksum += USHRT_MAX
+        
         return pack('H', chksum)
 
 
@@ -65,8 +72,9 @@ class ZKLib:
             session_id, reply_id) + command_string
         
         buf = unpack('8B'+'%sB' % len(command_string), buf)
-
+        
         chksum = unpack('H', self.createChkSum(buf))[0]
+        #print unpack('H', self.createChkSum(buf))
         reply_id += 1
         if reply_id >= USHRT_MAX:
             reply_id -= USHRT_MAX

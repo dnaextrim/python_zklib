@@ -42,12 +42,12 @@ if ret == True:
             print "[UID %d]: ID: %s, Name: %s, Level: %s, Password: %s" % ( uid, data_user[uid][0], data_user[uid][1], level, data_user[uid][3]  )
         
     print "Pesan Clear Admin:", zk.clearAdmin()
-    zk.setUser(uid=61, userid='41', name='Dony Wahyu Isp', password='123456', role=zkconst.LEVEL_ADMIN)
+    #zk.setUser(uid=61, userid='41', name='Dony Wahyu Isp', password='123456', role=zkconst.LEVEL_ADMIN)
     
     attendance = zk.getAttendance()
     print "Pesan Get Attendance:"
     
-    if attendance:
+    if ( attendance ):
         for lattendance in attendance:
             if lattendance[1] == 15:
                 state = 'Check In'

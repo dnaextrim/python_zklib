@@ -49,7 +49,7 @@ def zkgetattendance(self):
             data_recv = self.zkclient.recvfrom(8)
         
         attendance = []  
-        if len(self.attendancedata) > 8:
+        if len(self.attendancedata) > 0:
             # The first 4 bytes don't seem to be related to the user
             for x in xrange(len(self.attendancedata)):
                 if x > 0:
@@ -59,8 +59,7 @@ def zkgetattendance(self):
             
             attendancedata = attendancedata[14:]
             
-            
-            while len(attendancedata) > 0:
+            while len(attendancedata) > 40:
                 
                 uid, state, timestamp, space = unpack( '24s1s4s11s', attendancedata.ljust(40)[:40] )
                 
