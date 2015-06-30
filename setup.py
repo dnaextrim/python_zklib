@@ -4,7 +4,7 @@ setup(
     # Application name:
     name="zklib",
     # Version number (initial):
-    version="0.1.0",
+    version="0.1.1",
     # Application author details:
     url="http://pypi.python.org/pypi/python_zklib_v010/",
     author="AlSayed Gamal",
