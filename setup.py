@@ -6,9 +6,9 @@ setup(
     # Version number (initial):
     version="0.1.1",
     # Application author details:
-    url="http://pypi.python.org/pypi/python_zklib_v010/",
+    url="https://github.com/AlSayedGamal/python_zklib",
     author="AlSayed Gamal",
-    author_email="gamal@vision-as.com",
+    author_email="mail.gamal@gmail.com",
     packages=["zklib"],
     license="LICENSE.txt",
     description="Zk Attendance Machine lib",
