@@ -5,9 +5,7 @@ ZK fingerprint Attendance Machine Library for python with a connection to the ne
 ## Getting started
 
 Login as admin to attendance machine and set the ip address for example (to 192.168.0.201) and connect the machine with ethernet to your network.
-```bash
-pip install zklib
-```
+
 Connect to the machine
 
 ```python
