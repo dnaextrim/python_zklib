@@ -17,6 +17,7 @@ def getSizeAttendance(self):
     if command == CMD_PREPARE_DATA:
         print command
         size = unpack('I', self.data_recv[8:12])[0]
+        print "size:"
         pp.pprint(size)
         return size
     else:

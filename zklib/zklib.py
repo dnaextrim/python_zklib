@@ -95,6 +95,7 @@ class ZKLib:
         command = unpack('HHHH', reply[:8])[0]
 	
         if command == CMD_ACK_OK:
+            print "CMD_ACK_OK"
             return True
         else:
             return False
