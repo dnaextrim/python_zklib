@@ -142,6 +142,9 @@ class ZKLib:
 
     def restartDevice(self):
         return zkrestart(self)
+
+    def poweroffDevice(self):
+        return zkpoweroff(self)
         
     def getUser(self):
         return zkgetuser(self)
