@@ -1,7 +1,7 @@
 import sys
 sys.path.append("zklib")
 
-import zklib
+from zklib import zklib
 import time
 import zkconst
 
