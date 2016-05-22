@@ -44,7 +44,7 @@ if ret == True:
     #print "Clear Admin:", zk.clearAdmin()
     #zk.setUser(uid=61, userid='41', name='Dony Wahyu Isp', password='123456', role=zkconst.LEVEL_ADMIN)
     
-    attendance = zk.getAttendance()
+    attendance = zk.testatt()
     print "Get Attendance:"
     
     if ( attendance ):

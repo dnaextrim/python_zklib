@@ -1,4 +1,5 @@
 from socket import *
+
 import sys
 import select
 import errno
@@ -22,6 +23,11 @@ from zkdevice import *
 from zkuser import *
 from zkattendance import *
 from zktime import *
+from zkprepare import *
+from zkrefreshdata import *
+from zkfreedata import *
+from zkrestart import *
+from zkAtt import *
 
 class ZKLib:
     
@@ -87,7 +93,9 @@ class ZKLib:
         """Checks a returned packet to see if it returned CMD_ACK_OK,
         indicating success"""
         command = unpack('HHHH', reply[:8])[0]
+	
         if command == CMD_ACK_OK:
+            print "CMD_ACK_OK"
             return True
         else:
             return False
@@ -169,3 +177,21 @@ class ZKLib:
     
     def getTime(self):
         return zkgettime(self)
+
+    def prepareData(self):
+        return zkprepare(self)
+
+
+    def refreshData(self):
+        return zkrefreshdata(self)
+
+    def freeData(self):
+        return zkfreedata(self)
+
+    def reboot(self):
+        return zkrestart(self)
+
+    def testatt(self):
+        return zkAtt(self)
+
+
