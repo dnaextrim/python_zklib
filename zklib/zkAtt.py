@@ -199,19 +199,19 @@ def zkAtt(self):
             int(reverseHex(timestamp.encode('hex')), 16))))
         attendancedata = attendancedata[40:]
 
-            while len(attendancedata):
+        while len(attendancedata):
 
-                pls = unpack('c', attendancedata[29:30])  # [3]
+            pls = unpack('c', attendancedata[29:30])  # [3]
 
-                uid, state, timestamp, space = unpack(
-                    '24s1s4s11s', attendancedata.ljust(40)[:40])
-                # print "%s, %s, %s, %s" % (uid, ord(pls[0]), ord(space[0]),
-                # decode_time( int( reverseHex( timestamp.encode('hex') ), 16 )
-                # ) )
+            uid, state, timestamp, space = unpack(
+                '24s1s4s11s', attendancedata.ljust(40)[:40])
+            # print "%s, %s, %s, %s" % (uid, ord(pls[0]), ord(space[0]),
+            # decode_time( int( reverseHex( timestamp.encode('hex') ), 16 )
+            # ) )
 
-                attendance.append((uid, ord(pls[0]), decode_time(
-                    int(reverseHex(timestamp.encode('hex')), 16))))
-                attendancedata = attendancedata[40:]
+            attendance.append((uid, ord(pls[0]), decode_time(
+                int(reverseHex(timestamp.encode('hex')), 16))))
+            attendancedata = attendancedata[40:]
 
     return attendance
 
