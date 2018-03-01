@@ -165,6 +165,9 @@ class ZKLib:
     
     def clearAdmin(self):
         return zkclearadmin(self)
+
+    def enrollUser(self, uid):
+        return zkenrolluser(self, uid)
         
     def getAttendance(self):
         return zkgetattendance(self)
@@ -181,7 +184,6 @@ class ZKLib:
     def prepareData(self):
         return zkprepare(self)
 
-
     def refreshData(self):
         return zkrefreshdata(self)
 
@@ -193,5 +195,3 @@ class ZKLib:
 
     def testatt(self):
         return zkAtt(self)
-
-
