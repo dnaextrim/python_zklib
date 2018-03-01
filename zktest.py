@@ -12,7 +12,7 @@ print "connection:", ret
 
 if ret == True:
     print "Disable Device", zk.disableDevice()
-    
+
     print "ZK Version:", zk.version()
     print "OS Version:", zk.osversion()
     """
@@ -59,8 +59,9 @@ if ret == True:
             print "date %s, Jam %s: %s, Status: %s" % ( lattendance[2].date(), lattendance[2].time(), lattendance[0], state )
         
     # print "Clear Attendance:", zk.clearAttendance()
-
     
+    zk.setUser(67, '67', 'Shubhamoy Chakrabarty', '', 0)
+    zk.enrollUser('67')
     print "Get Time:", zk.getTime()
     print "Enable Device", zk.enableDevice()
     print "Disconnect:", zk.disconnect()
